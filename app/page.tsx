@@ -1,5 +1,10 @@
-import styles from "./page.module.css";
+import "../styles/app.scss";
+import { Header } from "@/components/Header";
 
 export default function Home() {
-  return <div>Hello evr</div>;
+  return (
+    <div className="wrapper">
+      <Header />
+    </div>
+  );
 }
