@@ -2,6 +2,8 @@
     background-color: black;
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
     color: white;
+    position: fixed;
+    width: 100%;
     
 
     &__content{
@@ -9,6 +11,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
     }
 
     &__logoBlock{
@@ -122,8 +125,10 @@
     }
 
     @media (max-width: 485px){
-        ul{
-            display: none;
+        &__navigation{
+            ul{
+                display: none;
+            }
         }
         &__burger{
             display: flex;

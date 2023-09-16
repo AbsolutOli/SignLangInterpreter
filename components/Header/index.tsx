@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./Header.module.scss";
 import clsx from "clsx";
 import React from "react";
+import { NavigationPanel } from "../NavigationPanel";
 
 const navItems: string[] = ["Rooms", "Friends", "Settings"];
 
@@ -15,7 +16,7 @@ export const Header: React.FC = () => {
     <div className={styles.header}>
       <div className={clsx(styles.header__content, "content")}>
         <div className={styles.header__logoBlock}>
-          <Link href="/">
+          <Link href="/" onClick={() => setBurgerState(false)}>
             <Image
               className={styles.logo}
               src="/logo.png"
@@ -24,7 +25,7 @@ export const Header: React.FC = () => {
               height={50}
             />
           </Link>
-          <Link href="/">
+          <Link href="/" onClick={() => setBurgerState(false)}>
             <p>
               Mio<span>Gesto</span>
             </p>
@@ -32,21 +33,13 @@ export const Header: React.FC = () => {
         </div>
         <nav className={styles.header__navigation}>
           <ul>
-            <li>
-              <Link href="/rooms">
-                <p>Rooms</p>
-              </Link>
-            </li>
-            <li>
-              <Link href="/friends">
-                <p>Friends</p>
-              </Link>
-            </li>
-            <li>
-              <Link href="/settings">
-                <p>Settings</p>
-              </Link>
-            </li>
+            {navItems.map((item) => (
+              <li key={item}>
+                <Link href={`/${item.toLowerCase()}`}>
+                  <p>{item}</p>
+                </Link>
+              </li>
+            ))}
           </ul>
           <div
             className={clsx(styles.header__burger, {
@@ -57,6 +50,11 @@ export const Header: React.FC = () => {
             <span></span>
           </div>
         </nav>
+        <NavigationPanel
+          navItems={navItems}
+          isActive={burgerState}
+          setIsActive={setBurgerState}
+        />
       </div>
     </div>
   );
