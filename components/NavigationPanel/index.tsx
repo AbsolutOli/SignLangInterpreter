@@ -1,21 +1,21 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import styles from "./NavigationPanel.module.scss";
 import clsx from "clsx";
+import Link from "next/link";
 
-type NavPanelProps = {
-  navItems: string[];
-  isActive: boolean;
-  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import { useSelector, useDispatch } from "react-redux/es/exports";
+import { RootState } from "@/redux/store";
+import { setBurgerState } from "@/redux/navigation/slice";
 
-export const NavigationPanel: React.FC<NavPanelProps> = ({
-  navItems,
-  isActive,
-  setIsActive,
-}) => {
+import styles from "./NavigationPanel.module.scss";
+
+export const NavigationPanel = () => {
+  const dispatch = useDispatch();
+  const { navItems, burgerState: isActive } = useSelector(
+    (state: RootState) => state.navigation
+  );
+
   return (
     <div className={clsx(styles.navPanel, { [styles.active]: isActive })}>
       <ul>
@@ -23,7 +23,7 @@ export const NavigationPanel: React.FC<NavPanelProps> = ({
           <li key={index}>
             <Link
               href={`/${item.toLowerCase()}`}
-              onClick={() => setIsActive(false)}
+              onClick={() => dispatch(setBurgerState(false))}
             >
               <p>{item}</p>
             </Link>

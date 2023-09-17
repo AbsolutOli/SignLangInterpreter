@@ -5,18 +5,24 @@ import Image from "next/image";
 import styles from "./Header.module.scss";
 import clsx from "clsx";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux/es/exports";
+import { setBurgerState } from "@/redux/navigation/slice";
 import { NavigationPanel } from "../NavigationPanel";
+import { RootState } from "@/redux/store";
 
 const navItems: string[] = ["Rooms", "Friends", "Settings"];
 
 export const Header: React.FC = () => {
-  const [burgerState, setBurgerState] = React.useState(false);
+  const dispatch = useDispatch();
+  const { navItems, burgerState } = useSelector(
+    (state: RootState) => state.navigation
+  );
 
   return (
     <div className={styles.header}>
       <div className={clsx(styles.header__content, "content")}>
         <div className={styles.header__logoBlock}>
-          <Link href="/" onClick={() => setBurgerState(false)}>
+          <Link href="/" onClick={() => dispatch(setBurgerState(false))}>
             <Image
               className={styles.logo}
               src="/logo.png"
@@ -25,7 +31,7 @@ export const Header: React.FC = () => {
               height={50}
             />
           </Link>
-          <Link href="/" onClick={() => setBurgerState(false)}>
+          <Link href="/" onClick={() => dispatch(setBurgerState(false))}>
             <p>
               Mio<span>Gesto</span>
             </p>
@@ -45,16 +51,12 @@ export const Header: React.FC = () => {
             className={clsx(styles.header__burger, {
               [styles.active]: burgerState,
             })}
-            onClick={() => setBurgerState(!burgerState)}
+            onClick={() => dispatch(setBurgerState(!burgerState))}
           >
             <span></span>
           </div>
         </nav>
-        <NavigationPanel
-          navItems={navItems}
-          isActive={burgerState}
-          setIsActive={setBurgerState}
-        />
+        <NavigationPanel />
       </div>
     </div>
   );

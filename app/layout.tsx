@@ -1,7 +1,11 @@
+"use client";
+
 import { Header } from "@/components/Header";
 import "../styles/app.scss";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { store } from "../redux/store";
+import { Provider } from "react-redux";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -22,8 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Header />
-        {children}
+        <Provider store={store}>
+          <Header />
+          {children}
+        </Provider>
       </body>
     </html>
   );
