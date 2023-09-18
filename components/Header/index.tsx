@@ -5,18 +5,16 @@ import Image from "next/image";
 import styles from "./Header.module.scss";
 import clsx from "clsx";
 import React from "react";
-import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useDispatch } from "react-redux/es/exports";
 import { setBurgerState } from "@/redux/navigation/slice";
 import { NavigationPanel } from "../NavigationPanel";
-import { RootState } from "@/redux/store";
+import { useAppSelector } from "@/redux/storeHooks";
 
 const navItems: string[] = ["Rooms", "Friends", "Settings"];
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
-  const { navItems, burgerState } = useSelector(
-    (state: RootState) => state.navigation
-  );
+  const { navItems, burgerState } = useAppSelector((state) => state.navigation);
 
   return (
     <div className={styles.header}>
