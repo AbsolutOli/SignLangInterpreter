@@ -1,0 +1,65 @@
+.chat{
+    position: absolute;
+    height: 100%;
+    width: 25vw;
+    bottom: 0;
+    right: 0;
+
+    background-color: white;
+    padding: 120px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+
+    &__messageList{
+        flex: 1 1 auto;
+        overflow: auto;
+    }
+
+    &__message{
+        display: flex;
+        align-items: start;
+        column-gap: 5px;
+    }
+
+    &__avatar{
+        flex: 0 0 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    &__userMessage{
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        background-color: rgba(128, 128, 128, 0.092);
+        padding: 10px;
+        border-radius: 0 10px 10px 10px;
+    }
+
+    &__nickname{
+        font-weight: 600;
+    }
+
+    &__text{
+        font-size: 18px;
+    }
+
+    &__input{
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.094);
+        display: flex;
+        justify-content: space-between;
+        column-gap: 10px;
+
+        input{
+            padding: 0 5px;
+            font-size: 18px;
+        }
+
+        button{
+            background-color: transparent;
+            border: none;
+        }
+    }
+}
