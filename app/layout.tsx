@@ -1,8 +1,12 @@
+"use client";
+
 import { Header } from "@/components/Header";
 import "../styles/app.scss";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import { StoreProvider } from "@/redux/StoreProvider";
+import "regenerator-runtime/runtime";
+
+import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],

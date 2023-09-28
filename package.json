@@ -18,7 +18,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.1.2",
+    "react-speech-recognition": "^3.10.0",
+    "regenerator-runtime": "^0.14.0",
     "sass": "^1.67.0",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@types/react-speech-recognition": "^3.9.2",
+    "@types/regenerator-runtime": "^0.13.2"
   }
 }
