@@ -4,6 +4,8 @@ import { Header } from "@/components/Header";
 import "../styles/app.scss";
 import type { Metadata } from "next";
 import { StoreProvider } from "@/redux/StoreProvider";
+
+import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 import { Poppins } from "next/font/google";

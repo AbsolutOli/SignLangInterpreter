@@ -1,16 +1,18 @@
 //@ts-nocheck
 "use client";
 import Image from "next/image";
+import React from "react";
 import styles from "./UsersBlock.module.scss";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
+import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 interface TextProps {}
 
-export const UsersBlock: React.FC<TextProps> = ({}) => {
+const UsersBlock: React.FC<TextProps> = ({}) => {
   const {
     transcript,
     listening,
@@ -26,7 +28,13 @@ export const UsersBlock: React.FC<TextProps> = ({}) => {
     <div className={styles.user}>
       <div className={styles.user__block}>
         <div className={styles.user__avatar}>
-          <Image src="/avatar.jpg" alt="User Avatar" height={120} width={100} />
+          <Image
+            src="/avatar.jpg"
+            alt="User Avatar"
+            height={120}
+            width={100}
+            priority={true}
+          />
         </div>
 
         <div className={styles.user__bottomPanel}>
@@ -52,3 +60,5 @@ export const UsersBlock: React.FC<TextProps> = ({}) => {
     </div>
   );
 };
+
+export default UsersBlock;

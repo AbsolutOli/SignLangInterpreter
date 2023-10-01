@@ -1,9 +1,12 @@
-import Image from "next/image";
 import styles from "./Rooms.module.scss";
-import clsx from "clsx";
 
-import { UsersBlock } from "@/components/UsersBlock";
 import { Chat } from "@/components/Chat";
+
+import dynamic from "next/dynamic";
+
+const UsersBlock = dynamic(() => import("../../components/UsersBlock"), {
+  ssr: false,
+});
 
 const Rooms: React.FC = () => {
   return (
