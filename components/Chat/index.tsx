@@ -4,8 +4,23 @@ import Image from "next/image";
 import styles from "./Chat.module.scss";
 import { useAppSelector } from "@/redux/storeHooks";
 
+import { useDispatch } from "react-redux";
+import { addChatItem } from "@/redux/chat/slice";
+
+import { useRef } from "react";
+
 export const Chat: React.FC = () => {
+  const dispatch = useDispatch();
   const { chatItems } = useAppSelector((state) => state.chat);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const sendButtonClick = () => {
+    const inputValue = inputRef.current?.value;
+    if (inputValue) {
+      dispatch(addChatItem(inputValue));
+      inputRef.current.value = "";
+    }
+  };
 
   return (
     <div className={styles.chat}>
@@ -27,8 +42,8 @@ export const Chat: React.FC = () => {
         ))}
       </ul>
       <div className={styles.chat__input}>
-        <input type="text" placeholder="Input your message..." />
-        <button type="submit">
+        <input ref={inputRef} type="text" placeholder="Input your message..." />
+        <button onClick={() => sendButtonClick()} type="submit">
           <Image
             src="/send-message.png"
             alt="Send Message"
