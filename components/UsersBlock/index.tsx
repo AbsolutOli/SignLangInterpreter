@@ -1,7 +1,7 @@
 //@ts-nocheck
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./UsersBlock.module.scss";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -14,8 +14,7 @@ import "regenerator-runtime/runtime";
 interface TextProps {}
 
 const UsersBlock: React.FC<TextProps> = ({}) => {
-  const [micState, setMicState] = useState(false); // false - off; true - on
-  console.log(micState);
+  const [micState, setMicState] = React.useState(false); // false - off; true - on
 
   const {
     transcript,

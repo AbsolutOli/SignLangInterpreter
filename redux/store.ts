@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import navigationSlice from './navigation/slice'
+import navigationSlice from './navigation/slice';
+import chatSlice from "./chat/slice";
 
 export const store = configureStore({
     reducer: {
-        navigation: navigationSlice
+        navigation: navigationSlice,
+        chat: chatSlice
     }
 })
 
