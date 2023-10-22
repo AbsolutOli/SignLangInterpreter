@@ -2,6 +2,10 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+
+import { useDispatch } from "react-redux";
+import { addChatItem } from "@/redux/chat/slice";
+
 import styles from "./UsersBlock.module.scss";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -14,6 +18,7 @@ import "regenerator-runtime/runtime";
 interface TextProps {}
 
 const UsersBlock: React.FC<TextProps> = ({}) => {
+  const dispatch = useDispatch();
   const [micState, setMicState] = React.useState(false); // false - off; true - on
 
   const {
@@ -38,6 +43,11 @@ const UsersBlock: React.FC<TextProps> = ({}) => {
     } else {
       console.log("Ваш микрофон выключен");
     }
+  };
+  const onStopListen = () => {
+    dispatch(addChatItem(transcript));
+    resetTranscript();
+    SpeechRecognition.stopListening();
   };
 
   return (
@@ -76,8 +86,8 @@ const UsersBlock: React.FC<TextProps> = ({}) => {
         <div>
           <p>Microphone: {listening ? "on" : "off"}</p>
           <button onClick={() => onStartListen()}>Start</button>
-          <button onClick={SpeechRecognition.stopListening}>Stop</button>
-          <button onClick={resetTranscript}>Reset</button>
+          <button onClick={() => onStopListen()}>Stop</button>
+          {/* <button onClick={resetTranscript}>Reset</button> */}
         </div>
       </div>
     </div>
