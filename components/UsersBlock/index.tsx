@@ -21,6 +21,7 @@ const UsersBlock: React.FC<TextProps> = ({}) => {
     listening,
     resetTranscript,
     browserSupportsSpeechRecognition,
+    browserSupportsContinuousListening,
   } = useSpeechRecognition();
 
   if (!browserSupportsSpeechRecognition) {
